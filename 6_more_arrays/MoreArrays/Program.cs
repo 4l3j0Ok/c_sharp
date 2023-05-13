@@ -144,7 +144,7 @@ namespace more_arrays
                 for (int column = 0; column != total_columns; column += 1)
                 {
                     if (column == 0) values[row, column] = 0;
-                    else values[row, column] = row + values[row, column -1];
+                    else values[row, column] = row + values[row, column - 1];
                     Console.Write(values[row, column] + " ");
                 }
                 Console.WriteLine();
