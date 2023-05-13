@@ -6,29 +6,29 @@ namespace more_arrays
     {
         public static void Main(string[] args)
         {
-            //ejercicio_uno();
-            //Console.WriteLine();
-            //Console.ReadKey();
+            ejercicio_uno();
+            Console.WriteLine();
+            Console.ReadKey();
 
-            //ejercicio_dos();
-            //Console.WriteLine();
-            //Console.ReadKey();
+            ejercicio_dos();
+            Console.WriteLine();
+            Console.ReadKey();
 
-            //ejercicio_tres();
-            //Console.WriteLine();
-            //Console.ReadKey();
+            ejercicio_tres();
+            Console.WriteLine();
+            Console.ReadKey();
 
-            //ejercicio_cuatro();
-            //Console.WriteLine();
-            //Console.ReadKey();
+            ejercicio_cuatro();
+            Console.WriteLine();
+            Console.ReadKey();
 
-            //ejercicio_cinco();
-            //Console.WriteLine();
-            //Console.ReadKey();
+            ejercicio_cinco();
+            Console.WriteLine();
+            Console.ReadKey();
 
-            //ejercicio_seis();
-            //Console.WriteLine();
-            //Console.ReadKey();
+            ejercicio_seis();
+            Console.WriteLine();
+            Console.ReadKey();
 
             ejercicio_siete();
             Console.WriteLine();
