@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "MoreArrays/1.0.0": {
+      "more_basics/1.0.0": {
         "runtime": {
-          "MoreArrays.dll": {}
+          "more_basics.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "MoreArrays/1.0.0": {
+    "more_basics/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

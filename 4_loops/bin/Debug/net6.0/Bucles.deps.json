@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "Bucles/1.0.0": {
+      "loops/1.0.0": {
         "runtime": {
-          "Bucles.dll": {}
+          "loops.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Bucles/1.0.0": {
+    "loops/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "3_probably_more_basics/1.0.0": {
+      "more_arrays/1.0.0": {
         "runtime": {
-          "3_probably_more_basics.dll": {}
+          "more_arrays.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "3_probably_more_basics/1.0.0": {
+    "more_arrays/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
