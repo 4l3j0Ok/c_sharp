@@ -3,12 +3,12 @@
 namespace while_loops {
     class Program {
         static void Main(){
-            //ejercicio_uno();
-            //Console.ReadKey();
-            //ejercicio_dos();
-            //Console.ReadKey();
-            //ejercicio_tres();
-            //Console.ReadKey();
+            ejercicio_uno();
+            Console.ReadKey();
+            ejercicio_dos();
+            Console.ReadKey();
+            ejercicio_tres();
+            Console.ReadKey();
             ejercicio_cuatro();
             Console.ReadKey();
         }
