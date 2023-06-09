@@ -63,7 +63,7 @@ namespace random {
                         {
                             Console.WriteLine("El número {0} está en su cartón.", str_raffled);
                             Console.WriteLine("¡¡¡¡¡¡ACABAS DE GANAR!!!!!!");
-                            Environment.Exit(0);
+                            return;
                         }
                     }
                 }
