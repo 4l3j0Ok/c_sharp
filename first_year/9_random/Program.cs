@@ -89,9 +89,9 @@ namespace random {
                     index += 1;
                 }
             }
-            return order_cardboard(cardboard, arr_rows, arr_columns);
+            return sort_cardboard(cardboard, arr_rows, arr_columns);
         }
-        private static int[,] order_cardboard(int[,] cardboard, int arr_rows, int arr_columns)
+        private static int[,] sort_cardboard(int[,] cardboard, int arr_rows, int arr_columns)
         {
             int index = 0;
             int[] plain_array = new int[cardboard.Length];
