@@ -3,20 +3,20 @@
 namespace functions {
     class Program {
         static void Main(){
-            calculator();
+            Calculator();
         }
-        static void calculator(){
-            string input = "";
+        static void Calculator(){
+            string input;
             while (true){
-                input = print_options_and_get_input();
+                input = PrintOptionsAndGetInput();
                 if (input.ToUpper() == "S") return;
-                print_result(input);
+                PrintResult(input);
                 Console.WriteLine("Presione una tecla para continuar....");
                 Console.ReadKey();
                 Console.Clear();
             }
         }
-        static string print_options_and_get_input(){
+        static string PrintOptionsAndGetInput(){
             string[] valid_options = {"A","B","C","D","S"};
             string input = "";
             Console.WriteLine("Calculadora básica....");
@@ -35,54 +35,54 @@ namespace functions {
             }
             return input;
         }
-        static void print_result(string input){
+        static void PrintResult(string input){
             int value_1, value_2;
             decimal result = 0;
             string str_operator = "";
             string[] operators = {"sumar", "restar", "multiplicar", "dividir"};
-            value_1 = get_value("primer");
-            value_2 = get_value("segundo");
+            value_1 = GetValue("primer");
+            value_2 = GetValue("segundo");
             if (input.ToUpper() == "A") 
             {
-                result = addition(value_1, value_2);
+                result = Addition(value_1, value_2);
                 str_operator = operators[0];
             }
             if (input.ToUpper() == "B")
             {
-                result = substraction(value_1, value_2);
+                result = Substraction(value_1, value_2);
                 str_operator = operators[1];
             }
             if (input.ToUpper() == "C")
             {
-                result = multiplication(value_1, value_2);
+                result = Multiplication(value_1, value_2);
                 str_operator = operators[2];
             }
             if (input.ToUpper() == "D") 
             {
-                result = division(value_1, value_2);
+                result = Division(value_1, value_2);
                 str_operator = operators[3];
             }
             Console.Write("El resultado de {0} los valores es: {1}", str_operator, result);
             Console.WriteLine();
         }
-        static int get_value(string formatter){
+        static int GetValue(string formatter){
             int value;
             Console.Write("Ingrese {0} valor: ", formatter);
             value = Convert.ToInt32(Console.ReadLine());
             return value;
         }
 
-        static decimal addition(int value_1, int value_2){
+        static decimal Addition(int value_1, int value_2){
             return value_1 + value_2;
         }
-        static decimal substraction(int value_1, int value_2){
+        static decimal Substraction(int value_1, int value_2){
             return value_1 - value_2;
         }
-        static decimal multiplication(int value_1, int value_2){
+        static decimal Multiplication(int value_1, int value_2){
             return value_1 * value_2;
         }
-        static decimal division(int value_1, int value_2){
-            return value_1 / value_2;
+        static decimal Division(int value_1, int value_2){
+            return value_1 * value_2;
         }
     }
 }
