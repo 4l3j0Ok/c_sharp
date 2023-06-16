@@ -8,7 +8,7 @@ namespace functions {
         static void Calculator(){
             string input;
             while (true){
-                input = PrintOptionsAndGetInput();
+                input = GetInput();
                 if (input.ToUpper() == "S") return;
                 PrintResult(input);
                 Console.WriteLine("Presione una tecla para continuar....");
@@ -16,7 +16,7 @@ namespace functions {
                 Console.Clear();
             }
         }
-        static string PrintOptionsAndGetInput(){
+        static string GetInput(){
             string[] valid_options = {"A","B","C","D","S"};
             string input = "";
             Console.WriteLine("Calculadora básica....");
