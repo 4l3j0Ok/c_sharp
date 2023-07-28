@@ -6,11 +6,11 @@ namespace random {
         static void Main(string[] args)
         {
             first_exercise();
+            Console.ReadKey();
         }
         static void first_exercise()
         {
             int arr_rows = 6, arr_columns = 4;
-            
             int[,] cardboard = create_cardboard(arr_rows, arr_columns);
             start_game(cardboard, arr_rows, arr_columns);
         }
@@ -27,20 +27,20 @@ namespace random {
                 raffled = new Random().Next(0, 100);
                 if (raffled >= 10) str_raffled = raffled.ToString();
                 else str_raffled = "0" + raffled.ToString();
-                Console.WriteLine("\nEl número sorteado fue: " + str_raffled + "\n");
+                Console.WriteLine("\n\tEl número sorteado fue: " + str_raffled + "\n");
                 for (int row = 0; row != arr_rows; row += 1)
                 {
                     for (int column = 0; column != arr_columns; column += 1)
                     {
                         if (raffled == cardboard[row, column])
                         {
-                            Console.WriteLine("El número {0} está en su cartón.", str_raffled);
-                            Console.WriteLine("¡¡¡¡¡¡ACABAS DE GANAR!!!!!!");
+                            Console.WriteLine("\tEl número {0} está en su cartón.", str_raffled);
+                            Console.WriteLine("\n\t¡¡¡¡¡¡ACABAS DE GANAR!!!!!!");
                             return;
                         }
                     }
                 }
-                Console.WriteLine("El número {0} no se encuentra en su cartón.", str_raffled);
+                Console.WriteLine("\tEl número {0} no se encuentra en su cartón.", str_raffled);
                 Console.WriteLine("\nTe quedan {0} intentos.\n", attempt - 1);
                 if (attempt != 1)
                 {
@@ -60,7 +60,7 @@ namespace random {
                 for (int column = 0; column != arr_columns; column += 1)
                 {
                     Console.Write("|");
-                    if (cardboard[row, column] > 10) Console.Write(" " + cardboard[row, column] + " ");
+                    if (cardboard[row, column] >= 10) Console.Write(" " + cardboard[row, column] + " ");
                     else Console.Write(" 0" + cardboard[row, column] + " ");
                 }
                 Console.Write("|");
@@ -91,6 +91,7 @@ namespace random {
             }
             return sort_cardboard(cardboard, arr_rows, arr_columns);
         }
+
         private static int[,] sort_cardboard(int[,] cardboard, int arr_rows, int arr_columns)
         {
             int index = 0;
