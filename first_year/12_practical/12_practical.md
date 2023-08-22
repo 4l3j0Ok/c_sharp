@@ -59,14 +59,15 @@ Salida:
 ```
 La matriz generada es la siguiente:
 
-	6 2 2 6 
-	2 3 3 5 
-	5 2 5 1 
-	4 5 1 3 
+	1 1 5 1 
+	1 4 2 1 
+	5 6 4 2 
+	5 2 4 3 
 
-El total de la suma entre todos los números de la matriz es: 55
+El total de la suma entre todos los números de la matriz es: 47
 
 Presione una tecla para continuar...
+
 ```
 
 # Ejercicio 2
@@ -148,6 +149,7 @@ Salida:
 	4 5 6 7 8 = 30
 
 Presione una tecla para continuar...
+
 ```
 
 # Ejercicio 3
@@ -231,6 +233,7 @@ Matrix transpuesta:
 	8 1 5 
 
 Presione una tecla para continuar...
+
 ```
 
 # Ejercicio 4
@@ -329,18 +332,19 @@ Salida:
 ```
 Matriz generada con valores aleatorios:
 
-	5 7 5 6 2 7 
-	5 2 3 8 3 6 
-	5 7 6 3 7 3 
-	4 7 4 5 4 3 
-	2 3 2 4 4 2 
-	5 2 6 3 5 7 
+	5 7 6 8 5 2 
+	7 5 4 7 2 7 
+	7 5 6 2 5 5 
+	6 5 5 3 2 6 
+	7 2 7 5 4 4 
+	8 8 3 8 2 3 
 
 Array generada con los valores de la diagonal:
 
-	5 2 6 5 4 7 
+	5 5 6 3 4 3 
 
 Presione una tecla para continuar...
+
 ```
 
 # Ejercicio 5
@@ -437,16 +441,109 @@ Salida:
 ```
 Array 1:
 
-	9 3 1 8 1 4 
+	5 3 2 4 1 1 
 
 Array 2:
 
-	1 7 1 2 2 6 
+	2 5 3 1 4 5 
 
 Resultante:
 
-	1512 504 168 1344 168 672 
+	3000 1800 1200 2400 600 600 
 
 Presione una tecla para continuar...
+
+```
+
+# Ejercicio 6
+
+Código:
+```csharp
+﻿using System;
+using System.Diagnostics;
+
+
+// 5 - Desarrolle un programa que:
+//   a. Utilice dos arrays unidimensionales de 5 posiciones.
+//   b. Los arrays deberán ser cargados con valores random de entre 1 y 9.
+//   c. Luego deberá tomar cada valor del array1 e ir multiplicando por cada uno de los del array2 de la 
+//   siguiente forma: 7 x 7 x 9 x 3 x 8 x 9 = 95256
+
+
+namespace practical_6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int ammount = 5;
+            string[,] matrix = CreateUserMatrix(ammount);
+            PrintMatrix(matrix);
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static string[,] CreateUserMatrix(int ammount)
+        {
+            string[,] matrix = new string[ammount, 3];
+            for (int row = 0; row != ammount; row++) {
+                Console.Write("Ingrese el nombre: ");
+                matrix[row, 0] = Console.ReadLine();
+                Console.Write("Ingrese el apellido: ");
+                matrix[row, 1] = Console.ReadLine();
+                Console.Write("Ingrese la edad: ");
+                matrix[row, 2] = Console.ReadLine();
+            }
+            return matrix;
+        }
+
+        static void PrintMatrix(string[,] matrix)
+        {
+            int total_rows = matrix.GetLength(0);
+            int half;
+            if (total_rows % 2 == 0) half = (total_rows + 1) / 2;
+            else half = total_rows / 2;
+            // Imprimo todo hasta la mitad, omitiendo el último índice.
+            for (int row = total_rows -2; row >= half; row--)
+            {
+                Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
+            }
+            // Imprimo el último índice.
+            Console.WriteLine($"{matrix[total_rows - 1, 1]}, {matrix[total_rows - 1, 0]} {matrix[total_rows - 1, 2]}");
+            // Imprimo desde la mitad hasta el índice 0.
+            for (int row = half - 1; row >= 0; row--)
+            {
+                Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
+            } 
+        }
+
+        
+    }
+}
+
+```
+
+Salida:
+```
+Ingrese el nombre: Leandro
+Ingrese el apellido: Pini
+Ingrese la edad: 43
+Ingrese el nombre: Alejo
+Ingrese el apellido: Sarmiento
+Ingrese la edad: 22
+Ingrese el nombre: Juan
+Ingrese el apellido: Perez
+Ingrese la edad: 55
+Ingrese el nombre: Maria
+Ingrese el apellido: Suarez
+Ingrese la edad: 43
+Ingrese el nombre: Nicolas
+Ingrese el apellido: Rolon
+Ingrese la edad: 26
+Suarez, Maria 43
+Perez, Juan 55
+Rolon, Nicolas 26
+Sarmiento, Alejo 22
+Pini, Leandro 43
 ```
 

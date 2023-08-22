@@ -32,7 +32,10 @@ def create_md():
                 code = f"Código:\n```csharp\n{cs_content}\n```\n"
                 command = f"dotnet run {file_path} --project {folder_path}"
                 print(f"Ejecutando el comando: {command}")
-                output = "Salida:\n```\n" + subprocess.run(command, shell=True, stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding="utf-8").stdout + "```"
+                if not "output.txt" in os.listdir(folder_path):
+                    output = "Salida:\n```\n" + subprocess.run(command, shell=True, stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding="utf-8").stdout + "\n```"
+                else:
+                    output = "Salida:\n```\n" + open(folder_path + os.sep + "output.txt").read() + "\n```"
                 title = "Ejercicio " + folder if folder[0] != "0" else "Ejercicio " + folder[1:]
                 body = BODY.format(
                     code=code,
