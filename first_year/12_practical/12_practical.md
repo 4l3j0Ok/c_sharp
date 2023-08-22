@@ -17,37 +17,34 @@ namespace practical_1
     {
         static void Main(string[] args)
         {
-            int total_rows = 4;
-            int total_cols = 4;
-            int start = 1;
-            int limit = 7;
-            int[,] random_array = GetRandomArray(total_rows, total_cols, start, limit);
-            PrintAndSumArray(random_array);
+            int total_rows = 4; int total_cols = 4; int start = 1; int limit = 7;
+            int[,] random_matrix = GetRandomMatrix(total_rows, total_cols, start, limit);
+            PrintAndSumMatrix(random_matrix);
             Console.WriteLine("Presione una tecla para continuar...");
             Console.ReadKey();
         }
 
-        static int[,] GetRandomArray(int total_rows, int total_cols, int start, int limit)
+        static int[,] GetRandomMatrix(int total_rows, int total_cols, int start, int limit)
         {
-            int[,] array = new int[total_rows, total_cols];
+            int[,] matrix = new int[total_rows, total_cols];
             for (int row = 0; row != total_rows; row += 1) {
                 for (int col = 0; col != total_cols; col += 1) {
-                    array[row, col] = new Random().Next(start, limit);
+                    matrix[row, col] = new Random().Next(start, limit);
                 }
             }
-            return array;
+            return matrix;
         }
 
-        static void PrintAndSumArray(int[,] array) {
-            int total_rows = array.GetLength(0);
-            int total_cols = array.GetLength(1);
+        static void PrintAndSumMatrix(int[,] matrix) {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
             int sum = 0;
             Console.WriteLine("La matriz generada es la siguiente:\n");
             for (int row = 0; row != total_rows; row += 1) {
                 Console.Write("\t");
                 for (int col = 0; col != total_cols; col += 1) {
-                    sum += array[row, col];
-                    Console.Write(array[row, col] + " ");
+                    sum += matrix[row, col];
+                    Console.Write(matrix[row, col] + " ");
                 }
                 Console.WriteLine();
             }
@@ -62,12 +59,12 @@ Salida:
 ```
 La matriz generada es la siguiente:
 
-	1 2 5 5 
-	2 3 2 3 
-	1 3 2 5 
-	5 3 6 4 
+	6 2 2 6 
+	2 3 3 5 
+	5 2 5 1 
+	4 5 1 3 
 
-El total de la suma entre todos los números de la matriz es: 52
+El total de la suma entre todos los números de la matriz es: 55
 
 Presione una tecla para continuar...
 ```
@@ -89,33 +86,35 @@ namespace practical_2
     {
         static void Main(string[] args)
         {
-            int total_rows = 5; int total_cols = 5; int start = 0;
-            int[,] generated_array = GenerateArray(total_rows, total_cols, start);
-            PrintArray(generated_array);
+            int total_rows = 5;
+            int total_cols = 5;
+            int start = 0;
+            int[,] generated_matrix = GenerateMatrix(total_rows, total_cols, start);
+            PrintMatrix(generated_matrix);
             Console.WriteLine("Presione una tecla para continuar...");
             Console.ReadKey();
         }
 
-        static int[,] GenerateArray(int total_rows, int total_cols, int start)
+        static int[,] GenerateMatrix(int total_rows, int total_cols, int start)
         {
             int value = start;
-            int[,] array = new int[total_rows, total_cols];
-            for (int r = 0; r != total_rows; r += 1)
+            int[,] matrix = new int[total_rows, total_cols];
+            for (int row = 0; row != total_rows; row += 1)
             {
-                for (int c = 0; c != total_cols; c += 1)
+                for (int col = 0; col != total_cols; col += 1)
                 {
-                    array[r, c] = value;
+                    matrix[row, col] = value;
                     value += 1;
                 }
                 start += 1;
                 value = start;
             }
-            return array;
+            return matrix;
         }
 
-        static void PrintArray(int[,] array) {
-            int total_rows = array.GetLength(0);
-            int total_cols = array.GetLength(1);
+        static void PrintMatrix(int[,] matrix) {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
             int sum = 0;
             Console.WriteLine();
             for (int row = 0; row != total_rows; row += 1)
@@ -123,8 +122,8 @@ namespace practical_2
                 Console.Write("\t");
                 for (int col = 0; col != total_cols; col += 1)
                 {
-                    sum += array[row, col];
-                    Console.Write(array[row, col] + " ");
+                    sum += matrix[row, col];
+                    Console.Write(matrix[row, col] + " ");
                     if (col == total_cols - 1) {
                         Console.Write("= " + sum);
                         sum = 0;
@@ -147,6 +146,306 @@ Salida:
 	2 3 4 5 6 = 20
 	3 4 5 6 7 = 25
 	4 5 6 7 8 = 30
+
+Presione una tecla para continuar...
+```
+
+# Ejercicio 3
+
+Código:
+```csharp
+﻿using System;
+
+// Elaborar un programa que lea o recorra una matriz, que ya debe estar cargadas con valores, y que imprima 
+// por pantalla poniendo las filas como columnas y las columnas como filas (lo que se conoce como matriz 
+// transpuesta)
+
+
+namespace practical_3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[,] matrix = {
+                { 2, 5, 6, 7, 8 },
+                { 8, 6, 3, 2, 1 },
+                { 7, 4, 6, 1, 5 }
+            };
+            Console.WriteLine("Matrix original:");
+            PrintMatrix(matrix);
+            int[,] transposed_matrix = TransposeMatrix(matrix);
+            Console.WriteLine("Matrix transpuesta:");
+            PrintMatrix(transposed_matrix);
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static int[,] TransposeMatrix(int[,] old_matrix) {
+            int rows = old_matrix.GetLength(0);
+            int cols = old_matrix.GetLength(1);
+            int[,] new_matrix = new int[cols, rows];
+            for (int row = 0; row != rows; row += 1) {
+                for (int col = 0; col != cols; col += 1) {
+                    new_matrix[col, row] = old_matrix[row, col];
+                }
+            }
+            return new_matrix;
+        }
+
+        static void PrintMatrix(int[,] matrix)
+        {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
+            Console.WriteLine();
+            for (int row = 0; row != total_rows; row += 1)
+            {
+                Console.Write("\t");
+                for (int col = 0; col != total_cols; col += 1)
+                {
+                    Console.Write(matrix[row, col] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+```
+
+Salida:
+```
+Matrix original:
+
+	2 5 6 7 8 
+	8 6 3 2 1 
+	7 4 6 1 5 
+
+Matrix transpuesta:
+
+	2 8 7 
+	5 6 4 
+	6 3 6 
+	7 2 1 
+	8 1 5 
+
+Presione una tecla para continuar...
+```
+
+# Ejercicio 4
+
+Código:
+```csharp
+﻿using System;
+
+// Elabore un programa que cargue una matriz de 6 x 6 con números aleatorios entre 2 y 8. Imprima la misma 
+// por pantalla. Al mismo tiempo que la imprime debe almacenar en un matrix de 6 posiciones los valores de 
+// la diagonal de dicha matriz (diagonal de izquierda a derecha y de arriba hacia abajo) y luego se debe 
+// imprimir dicho matrix.
+
+
+namespace practical_4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int total_rows = 6;
+            int total_cols = 6;
+            int start = 2;
+            int limit = 9;
+            int[,] random_matrix = GetRandommatrix(total_rows, total_cols, start, limit);
+            int[] diagonal_values = GetDiagonalMatrixValues(random_matrix);
+            Console.WriteLine("Matriz generada con valores aleatorios:");
+            PrintMatrix(random_matrix);
+            Console.WriteLine("Array generada con los valores de la diagonal:");
+            PrintArray(diagonal_values);
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static int[,] GetRandommatrix(int total_rows, int total_cols, int start, int limit)
+        {
+            int[,] matrix = new int[total_rows, total_cols];
+            for (int row = 0; row != total_rows; row += 1)
+            {
+                for (int col = 0; col != total_cols; col += 1)
+                {
+                    matrix[row, col] = new Random().Next(start, limit);
+                }
+            }
+            return matrix;
+        }
+
+        static void PrintMatrix(int[,] matrix)
+        {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
+            Console.WriteLine();
+            for (int row = 0; row != total_rows; row += 1)
+            {
+                Console.Write("\t");
+                for (int col = 0; col != total_cols; col += 1)
+                {
+                    Console.Write(matrix[row, col] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+
+        static int[] GetDiagonalMatrixValues(int[,] matrix)
+        {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
+            int[] array = new int[total_cols];
+            int index = 0;
+            for (int row = 0; row != total_rows; row += 1)
+            {
+                array[index] = matrix[row, index];
+                index += 1;
+            }
+            return array;
+        }
+
+        static void PrintArray(int[] array)
+        {
+            int array_length = array.GetLength(0);
+            Console.WriteLine();
+            Console.Write("\t");
+            for (int index = 0; index != array_length; index += 1) {
+                Console.Write(array[index] + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+    }
+}
+
+```
+
+Salida:
+```
+Matriz generada con valores aleatorios:
+
+	5 7 5 6 2 7 
+	5 2 3 8 3 6 
+	5 7 6 3 7 3 
+	4 7 4 5 4 3 
+	2 3 2 4 4 2 
+	5 2 6 3 5 7 
+
+Array generada con los valores de la diagonal:
+
+	5 2 6 5 4 7 
+
+Presione una tecla para continuar...
+```
+
+# Ejercicio 5
+
+Código:
+```csharp
+﻿using System;
+using System.Diagnostics;
+
+
+// 5 - Desarrolle un programa que:
+//   a. Utilice dos arrays unidimensionales de 5 posiciones.
+//   b. Los arrays deberán ser cargados con valores random de entre 1 y 9.
+//   c. Luego deberá tomar cada valor del array1 e ir multiplicando por cada uno de los del array2 de la 
+//   siguiente forma: 7 x 7 x 9 x 3 x 8 x 9 = 95256
+
+
+namespace practical_5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const bool DEBUG = false;
+            int array_length = 6;
+            int rndm_start = 1;
+            int rndm_limit = 10;
+            int[] array_1 = GenerateRandomArray(array_length, rndm_start, rndm_limit);
+            int[] array_2 = GenerateRandomArray(array_length, rndm_start, rndm_limit);
+            int[] results = LMultiply(array_1, array_2, DEBUG);
+            Console.WriteLine("Array 1:");
+            PrintArray(array_1);
+            Console.WriteLine("Array 2:");
+            PrintArray(array_2);
+            Console.WriteLine("Resultante:");
+            PrintArray(results);
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        static int[] GenerateRandomArray(int array_length, int rndm_start, int rndm_limit)
+        {
+            int[] array = new int[array_length];
+            for (int index = 0; index != array_length; index += 1)
+            {
+                array[index] = new Random().Next(rndm_start, rndm_limit);
+            }
+            return array;
+        }
+
+        static void PrintArray(int[] array)
+        {
+            int array_length = array.GetLength(0);
+            Console.WriteLine();
+            Console.Write("\t");
+            for (int index = 0; index != array_length; index += 1)
+            {
+                Console.Write(array[index] + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        static int[] LMultiply(int[] array_1, int[] array_2, bool debug = false) {
+            int pos = 0;
+            int[] results = new int[array_1.Length];
+            for (int i = 0; i != array_1.Length; i += 1) {
+                if (debug) Console.Write($"{array_1[i]} X {array_2[i]}");
+                results[i] = array_1[i] * array_2[i];
+                if (i != array_1.Length - 1) pos = i + 1;
+                else pos = 0;
+                while (true) {
+                    if (pos == i) break;
+                    if (debug) Console.Write($" X {array_2[pos]}");
+                    results[i] *= array_2[pos];
+                    if (pos == (array_2.Length - 1)) {
+                        pos = 0;
+                        continue;
+                    }
+                    pos++;
+                }
+                if (debug) Console.Write($" = {results[i]}");
+                if (debug) Console.WriteLine();
+            }
+            if(debug) Console.WriteLine();
+            return results;
+        }
+    }
+}
+
+```
+
+Salida:
+```
+Array 1:
+
+	9 3 1 8 1 4 
+
+Array 2:
+
+	1 7 1 2 2 6 
+
+Resultante:
+
+	1512 504 168 1344 168 672 
 
 Presione una tecla para continuar...
 ```

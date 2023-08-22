@@ -13,37 +13,34 @@ namespace practical_1
     {
         static void Main(string[] args)
         {
-            int total_rows = 4;
-            int total_cols = 4;
-            int start = 1;
-            int limit = 7;
-            int[,] random_array = GetRandomArray(total_rows, total_cols, start, limit);
-            PrintAndSumArray(random_array);
+            int total_rows = 4; int total_cols = 4; int start = 1; int limit = 7;
+            int[,] random_matrix = GetRandomMatrix(total_rows, total_cols, start, limit);
+            PrintAndSumMatrix(random_matrix);
             Console.WriteLine("Presione una tecla para continuar...");
             Console.ReadKey();
         }
 
-        static int[,] GetRandomArray(int total_rows, int total_cols, int start, int limit)
+        static int[,] GetRandomMatrix(int total_rows, int total_cols, int start, int limit)
         {
-            int[,] array = new int[total_rows, total_cols];
+            int[,] matrix = new int[total_rows, total_cols];
             for (int row = 0; row != total_rows; row += 1) {
                 for (int col = 0; col != total_cols; col += 1) {
-                    array[row, col] = new Random().Next(start, limit);
+                    matrix[row, col] = new Random().Next(start, limit);
                 }
             }
-            return array;
+            return matrix;
         }
 
-        static void PrintAndSumArray(int[,] array) {
-            int total_rows = array.GetLength(0);
-            int total_cols = array.GetLength(1);
+        static void PrintAndSumMatrix(int[,] matrix) {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
             int sum = 0;
             Console.WriteLine("La matriz generada es la siguiente:\n");
             for (int row = 0; row != total_rows; row += 1) {
                 Console.Write("\t");
                 for (int col = 0; col != total_cols; col += 1) {
-                    sum += array[row, col];
-                    Console.Write(array[row, col] + " ");
+                    sum += matrix[row, col];
+                    Console.Write(matrix[row, col] + " ");
                 }
                 Console.WriteLine();
             }
