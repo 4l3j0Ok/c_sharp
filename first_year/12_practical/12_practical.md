@@ -59,12 +59,12 @@ Salida:
 ```
 La matriz generada es la siguiente:
 
-	1 1 5 1 
-	1 4 2 1 
-	5 6 4 2 
-	5 2 4 3 
+	5 4 6 5 
+	1 2 2 6 
+	6 4 1 5 
+	2 3 4 3 
 
-El total de la suma entre todos los números de la matriz es: 47
+El total de la suma entre todos los números de la matriz es: 59
 
 Presione una tecla para continuar...
 
@@ -332,16 +332,16 @@ Salida:
 ```
 Matriz generada con valores aleatorios:
 
-	5 7 6 8 5 2 
-	7 5 4 7 2 7 
-	7 5 6 2 5 5 
-	6 5 5 3 2 6 
-	7 2 7 5 4 4 
-	8 8 3 8 2 3 
+	7 6 6 8 6 5 
+	6 5 3 4 4 4 
+	7 8 7 6 8 2 
+	4 6 6 8 2 3 
+	5 7 2 4 3 3 
+	4 6 5 5 3 2 
 
 Array generada con los valores de la diagonal:
 
-	5 5 6 3 4 3 
+	7 5 7 8 3 2 
 
 Presione una tecla para continuar...
 
@@ -441,15 +441,15 @@ Salida:
 ```
 Array 1:
 
-	5 3 2 4 1 1 
+	1 3 3 5 1 4 
 
 Array 2:
 
-	2 5 3 1 4 5 
+	9 5 8 3 6 5 
 
 Resultante:
 
-	3000 1800 1200 2400 600 600 
+	32400 97200 97200 162000 32400 129600 
 
 Presione una tecla para continuar...
 
@@ -463,11 +463,10 @@ Código:
 using System.Diagnostics;
 
 
-// 5 - Desarrolle un programa que:
-//   a. Utilice dos arrays unidimensionales de 5 posiciones.
-//   b. Los arrays deberán ser cargados con valores random de entre 1 y 9.
-//   c. Luego deberá tomar cada valor del array1 e ir multiplicando por cada uno de los del array2 de la 
-//   siguiente forma: 7 x 7 x 9 x 3 x 8 x 9 = 95256
+// Desarrollar un programa que utilice un array bidimensional que permita cargar Nombre, Apellido y Edad de 
+// 5 personas (y en ese orden). Luego de que el mismo es cargado con la ayuda o interacción del usuario, el 
+// programa deberá recorrer el array e imprimir por consola el contenido de este respetando el formato que 
+// se muestra en la siguiente imagen ejemplo de ejecución
 
 
 namespace practical_6
@@ -494,6 +493,7 @@ namespace practical_6
                 Console.Write("Ingrese la edad: ");
                 matrix[row, 2] = Console.ReadLine();
             }
+            Console.WriteLine();
             return matrix;
         }
 
@@ -514,10 +514,9 @@ namespace practical_6
             for (int row = half - 1; row >= 0; row--)
             {
                 Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
-            } 
+            }
+            Console.WriteLine();
         }
-
-        
     }
 }
 
@@ -541,9 +540,12 @@ Ingrese el nombre: Nicolas
 Ingrese el apellido: Rolon
 Ingrese la edad: 26
 Suarez, Maria 43
+
 Perez, Juan 55
 Rolon, Nicolas 26
 Sarmiento, Alejo 22
 Pini, Leandro 43
+
+Presione una tecla para continuar...
 ```
 

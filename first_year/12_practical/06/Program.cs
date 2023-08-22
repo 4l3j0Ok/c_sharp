@@ -2,11 +2,10 @@
 using System.Diagnostics;
 
 
-// 5 - Desarrolle un programa que:
-//   a. Utilice dos arrays unidimensionales de 5 posiciones.
-//   b. Los arrays deberán ser cargados con valores random de entre 1 y 9.
-//   c. Luego deberá tomar cada valor del array1 e ir multiplicando por cada uno de los del array2 de la 
-//   siguiente forma: 7 x 7 x 9 x 3 x 8 x 9 = 95256
+// Desarrollar un programa que utilice un array bidimensional que permita cargar Nombre, Apellido y Edad de 
+// 5 personas (y en ese orden). Luego de que el mismo es cargado con la ayuda o interacción del usuario, el 
+// programa deberá recorrer el array e imprimir por consola el contenido de este respetando el formato que 
+// se muestra en la siguiente imagen ejemplo de ejecución
 
 
 namespace practical_6
