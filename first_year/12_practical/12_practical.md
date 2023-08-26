@@ -1,6 +1,7 @@
 # Ejercicio 1
 
 Código:
+
 ```csharp
 ﻿using System;
 
@@ -56,15 +57,16 @@ namespace practical_1
 ```
 
 Salida:
+
 ```
 La matriz generada es la siguiente:
 
-	5 4 6 5 
-	1 2 2 6 
-	6 4 1 5 
-	2 3 4 3 
+	4 5 3 2 
+	3 5 6 6 
+	6 5 4 5 
+	3 5 1 4 
 
-El total de la suma entre todos los números de la matriz es: 59
+El total de la suma entre todos los números de la matriz es: 67
 
 Presione una tecla para continuar...
 
@@ -73,6 +75,7 @@ Presione una tecla para continuar...
 # Ejercicio 2
 
 Código:
+
 ```csharp
 ﻿using System;
 
@@ -140,6 +143,7 @@ namespace practical_2
 ```
 
 Salida:
+
 ```
 
 	0 1 2 3 4 = 10
@@ -155,6 +159,7 @@ Presione una tecla para continuar...
 # Ejercicio 3
 
 Código:
+
 ```csharp
 ﻿using System;
 
@@ -217,6 +222,7 @@ namespace practical_3
 ```
 
 Salida:
+
 ```
 Matrix original:
 
@@ -239,6 +245,7 @@ Presione una tecla para continuar...
 # Ejercicio 4
 
 Código:
+
 ```csharp
 ﻿using System;
 
@@ -329,19 +336,20 @@ namespace practical_4
 ```
 
 Salida:
+
 ```
 Matriz generada con valores aleatorios:
 
-	7 6 6 8 6 5 
-	6 5 3 4 4 4 
-	7 8 7 6 8 2 
-	4 6 6 8 2 3 
-	5 7 2 4 3 3 
-	4 6 5 5 3 2 
+	5 6 4 7 5 4 
+	2 3 4 4 2 2 
+	3 6 2 4 4 5 
+	5 8 6 7 5 6 
+	5 5 3 4 8 8 
+	7 6 8 6 3 3 
 
 Array generada con los valores de la diagonal:
 
-	7 5 7 8 3 2 
+	5 3 2 7 8 3 
 
 Presione una tecla para continuar...
 
@@ -350,8 +358,10 @@ Presione una tecla para continuar...
 # Ejercicio 5
 
 Código:
+
 ```csharp
 ﻿using System;
+using System.IO;
 using System.Diagnostics;
 
 
@@ -362,27 +372,41 @@ using System.Diagnostics;
 //   siguiente forma: 7 x 7 x 9 x 3 x 8 x 9 = 95256
 
 
+// 8 - A los programas de los ejercicios 5 y 8 deberán incorporarle que además de imprimir por consola imprima 
+//   también en un archivo de texto plano (.txt) agregando al principio la fecha y hora exacta en que se ejecuta 
+//   el programa y que sea ese archivo un histórico de ejecuciones (una deba de la otra con su respectiva fecha 
+//   y hora).
+
 namespace practical_5
 {
     class Program
     {
+        /////////////////////////////////////////////// WRITER ////////////////////////////////////////////////////////
+        static string file_name = "practical_5_output.txt";
+        // Combino el path del escritorio y el nombre del archivo. Obtengo la ruta del escritorio con Environment.
+        static string file_path = Path.Combine(
+            path1: Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+            path2: file_name
+        );
+        static StreamWriter writer = new StreamWriter(file_path);
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         static void Main(string[] args)
         {
-            const bool DEBUG = false;
             int array_length = 6;
             int rndm_start = 1;
             int rndm_limit = 10;
             int[] array_1 = GenerateRandomArray(array_length, rndm_start, rndm_limit);
             int[] array_2 = GenerateRandomArray(array_length, rndm_start, rndm_limit);
-            int[] results = LMultiply(array_1, array_2, DEBUG);
-            Console.WriteLine("Array 1:");
+            int[] results = LMultiply(array_1, array_2);
+            WriteLine("Array 1:");
             PrintArray(array_1);
-            Console.WriteLine("Array 2:");
+            WriteLine("Array 2:");
             PrintArray(array_2);
-            Console.WriteLine("Resultante:");
+            WriteLine("Resultante:");
             PrintArray(results);
             Console.WriteLine("Presione una tecla para continuar...");
             Console.ReadKey();
+            writer.Close();
         }
 
         static int[] GenerateRandomArray(int array_length, int rndm_start, int rndm_limit)
@@ -398,27 +422,25 @@ namespace practical_5
         static void PrintArray(int[] array)
         {
             int array_length = array.GetLength(0);
-            Console.WriteLine();
-            Console.Write("\t");
+            WriteLine();
+            Write("\t");
             for (int index = 0; index != array_length; index += 1)
             {
-                Console.Write(array[index] + " ");
+                Write(array[index] + " ");
             }
-            Console.WriteLine();
-            Console.WriteLine();
+            WriteLine();
+            WriteLine();
         }
 
-        static int[] LMultiply(int[] array_1, int[] array_2, bool debug = false) {
+        static int[] LMultiply(int[] array_1, int[] array_2) {
             int pos = 0;
             int[] results = new int[array_1.Length];
             for (int i = 0; i != array_1.Length; i += 1) {
-                if (debug) Console.Write($"{array_1[i]} X {array_2[i]}");
                 results[i] = array_1[i] * array_2[i];
                 if (i != array_1.Length - 1) pos = i + 1;
                 else pos = 0;
                 while (true) {
                     if (pos == i) break;
-                    if (debug) Console.Write($" X {array_2[pos]}");
                     results[i] *= array_2[pos];
                     if (pos == (array_2.Length - 1)) {
                         pos = 0;
@@ -426,11 +448,20 @@ namespace practical_5
                     }
                     pos++;
                 }
-                if (debug) Console.Write($" = {results[i]}");
-                if (debug) Console.WriteLine();
             }
-            if(debug) Console.WriteLine();
             return results;
+        }
+
+        static void Write(string text = "")
+        {
+            Console.Write(text);
+            writer.Write(text);
+        }
+
+        static void WriteLine(string text = "")
+        {
+            Console.WriteLine(text);
+            writer.WriteLine(text);
         }
     }
 }
@@ -441,15 +472,15 @@ Salida:
 ```
 Array 1:
 
-	1 3 3 5 1 4 
+	2 9 5 2 3 7 
 
 Array 2:
 
-	9 5 8 3 6 5 
+	9 1 4 7 2 4 
 
 Resultante:
 
-	32400 97200 97200 162000 32400 129600 
+	4032 18144 10080 4032 6048 14112 
 
 Presione una tecla para continuar...
 
@@ -458,6 +489,7 @@ Presione una tecla para continuar...
 # Ejercicio 6
 
 Código:
+
 ```csharp
 ﻿using System;
 using System.Diagnostics;
@@ -547,5 +579,129 @@ Sarmiento, Alejo 22
 Pini, Leandro 43
 
 Presione una tecla para continuar...
+```
+
+# Ejercicio 7
+
+Código:
+
+```csharp
+﻿using System;
+using System.IO;
+
+
+// 7 - Desarrollar un programa que simule que se arrojan 5 dados, 5 veces, sobre la mesa y se toma nota de los 
+//   valores de cada dado (la cara que queda para arriba). Los valores deben ser cargados en un array 
+//   bidimensional siendo cada fila la que representa cada una de las 5 tiradas o tiros.
+//   Luego de estar cargado, el programa deberá recorrer el array e indicar cuantas veces salió cada cara del 
+//   dado en total de todos los tiros.
+
+
+namespace practical_7
+{
+    class Program
+    {
+        /////////////////////////////////////////////// WRITER ////////////////////////////////////////////////////////
+        static string file_name = "practical_7_output.txt";
+        // Combino el path del escritorio y el nombre del archivo. Obtengo la ruta del escritorio con Environment.
+        static string file_path = Path.Combine(
+            path1: Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+            path2: file_name
+        );
+        static StreamWriter writer = new StreamWriter(file_path);
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        static void Main(string[] args)
+        {
+            int rolls = 5;
+            int dices = 5;
+            int faces = 6;
+            int[,] results = StartGame(rolls, dices, faces);
+            ShowResults(results);
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+            writer.Close();
+        }
+
+        static int[,] StartGame(int rolls, int dices, int faces)
+        {
+            int[,] results = new int[rolls, dices];
+            faces = faces + 1;
+            Random rndm = new Random();
+            for (int i = 0; i != rolls; i++)
+            {
+                WriteLine($"Presione una tecla para la jugada numero {i + 1}");
+                Console.ReadKey();
+                for (int j = 0; j != dices; j++)
+                {
+                    results[i, j] = rndm.Next(1, faces);
+                }
+            }
+            WriteLine();
+            return results;
+        }
+
+        static void ShowResults(int[,] results)
+        {
+            int[,] occurrences = new int[results.GetLength(0) + 1, 2];
+            for (int i = 0; i != results.GetLength(0); i++)
+            {
+                Write($"Tiro {i + 1}: ");
+                for (int j = 0; j != results.GetLength(1); j++)
+                {
+                    Write($"{results[i, j]} ");
+                    occurrences[results[i, j] - 1, 0] = results[i, j];
+                    occurrences[results[i, j] - 1, 1] = occurrences[results[i, j] - 1, 1] + 1;
+                }
+                WriteLine("\n");
+            }
+            for (int i = 0; i != occurrences.GetLength(0); i++)
+            {
+                WriteLine($"{occurrences[i, 0]} = {occurrences[i, 1]} veces");
+            }
+        }
+
+        static void Write(string text = "")
+        {
+            Console.Write(text);
+            writer.Write(text);
+        }
+
+        static void WriteLine(string text = "")
+        {
+            Console.WriteLine(text);
+            writer.WriteLine(text);
+        }
+    }
+}
+
+```
+
+Salida:
+```
+Presione una tecla para la jugada numero 1
+Presione una tecla para la jugada numero 2
+Presione una tecla para la jugada numero 3
+Presione una tecla para la jugada numero 4
+Presione una tecla para la jugada numero 5
+
+Tiro 1: 2 4 2 6 2 
+
+Tiro 2: 2 3 5 2 4 
+
+Tiro 3: 1 4 5 5 2 
+
+Tiro 4: 2 2 4 5 1 
+
+Tiro 5: 6 2 3 4 4 
+
+1 = 2 veces
+2 = 9 veces
+3 = 2 veces
+4 = 6 veces
+5 = 4 veces
+6 = 2 veces
+
+Presione una tecla para continuar...
+
 ```
 

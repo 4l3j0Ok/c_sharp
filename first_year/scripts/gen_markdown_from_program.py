@@ -29,11 +29,11 @@ def create_md():
                 print(f"Usando el archivo: {file}")
                 print("Obteniendo el contenido del archivo...")
                 cs_content = open(file_path, encoding="utf-8").read()
-                code = f"Código:\n```csharp\n{cs_content}\n```\n"
+                code = f"""Código:\n\n```csharp\n{cs_content}\n```\n"""
                 command = f"dotnet run {file_path} --project {folder_path}"
                 print(f"Ejecutando el comando: {command}")
                 if not "output.txt" in os.listdir(folder_path):
-                    output = "Salida:\n```\n" + subprocess.run(command, shell=True, stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding="utf-8").stdout + "\n```"
+                    output = "Salida:\n\n```\n" + subprocess.run(command, shell=True, stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding="utf-8").stdout + "\n```"
                 else:
                     output = "Salida:\n```\n" + open(folder_path + os.sep + "output.txt").read() + "\n```"
                 title = "Ejercicio " + folder if folder[0] != "0" else "Ejercicio " + folder[1:]
@@ -48,6 +48,8 @@ def create_md():
                 )
                 print("Agregando el contenido al archivo final...")
                 md_file.write(content)
+        print("¡Fin del proceso!")
+        print(f"Archivo: {MD_PATH}")
 
 
 if __name__ == "__main__":
