@@ -1,0 +1,13 @@
+Array 1:
+
+	2 9 5 2 3 7 
+
+Array 2:
+
+	9 1 4 7 2 4 
+
+Resultante:
+
+	4032 18144 10080 4032 6048 14112 
+
+Presione una tecla para continuar...

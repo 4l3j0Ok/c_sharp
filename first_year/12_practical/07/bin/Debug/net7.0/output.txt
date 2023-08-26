@@ -1,0 +1,22 @@
+Presione una tecla para la jugada numero 1
+Presione una tecla para la jugada numero 2
+Presione una tecla para la jugada numero 3
+Presione una tecla para la jugada numero 4
+Presione una tecla para la jugada numero 5
+
+Tiro 1: 3 6 2 6 2 
+
+Tiro 2: 2 1 5 6 2 
+
+Tiro 3: 4 4 1 2 5 
+
+Tiro 4: 5 6 6 4 6 
+
+Tiro 5: 5 3 1 5 5 
+
+1 = 3 veces
+2 = 5 veces
+3 = 2 veces
+4 = 3 veces
+5 = 6 veces
+6 = 6 veces
