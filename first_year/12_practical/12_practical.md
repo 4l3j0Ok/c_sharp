@@ -61,12 +61,12 @@ Salida:
 ```
 La matriz generada es la siguiente:
 
-	4 1 1 5 
-	4 2 5 3 
-	2 3 1 4 
-	5 4 1 2 
+	4 3 6 6 
+	6 4 3 1 
+	6 4 3 5 
+	6 2 5 3 
 
-El total de la suma entre todos los números de la matriz es: 47
+El total de la suma entre todos los números de la matriz es: 67
 
 Presione una tecla para continuar...
 
@@ -340,16 +340,16 @@ Salida:
 ```
 Matriz generada con valores aleatorios:
 
-	8 6 5 6 2 8 
-	3 5 6 6 4 2 
-	7 4 8 6 5 3 
-	7 2 5 4 2 3 
-	7 5 3 2 4 7 
-	2 3 7 5 3 8 
+	7 3 7 2 8 8 
+	4 6 6 4 3 7 
+	6 2 3 2 3 8 
+	6 6 3 8 4 8 
+	6 2 7 2 5 7 
+	5 6 4 3 4 3 
 
 Array generada con los valores de la diagonal:
 
-	8 5 8 4 4 8 
+	7 6 3 8 5 3 
 
 Presione una tecla para continuar...
 
@@ -526,27 +526,51 @@ namespace practical_6
                 matrix[row, 2] = Console.ReadLine();
             }
             Console.WriteLine();
+            matrix = OrderMatrixByAge(matrix);
             return matrix;
+        }
+
+        static string[,] OrderMatrixByAge(string[,] matrix)
+        {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
+            string[,] new_matrix = new string[total_rows, total_cols];
+            List<int> order = new List<int>();
+            for (int row = 0; row != total_rows; row++)
+            {
+                // Si el valor del indice actual es mayor al valor del indice anterior
+                // hago sobre la lista order un .Add, sino un hago un .Insert cuando corresponda.
+                if (order.Count == 0 || int.Parse(matrix[row, 2]) > int.Parse(matrix[order[order.Count - 1], 2]))
+                    order.Add(row);
+                else
+                {
+                    for (int insert_index = 0; insert_index < order.Count(); insert_index++)
+                    {
+                        if (int.Parse(matrix[row, 2]) < int.Parse(matrix[order[insert_index], 2]))
+                        {
+                            order.Insert(insert_index, row);
+                            break;
+                        }
+                    }
+                }
+            }
+            // Creo la nueva matriz en base al la lista order que contiene los indices en orden de menor a mayor.
+            for (int row = 0; row != total_rows; row++)
+            {
+                new_matrix[row, 0] = matrix[order[row], 0];
+                new_matrix[row, 1] = matrix[order[row], 1];
+                new_matrix[row, 2] = matrix[order[row], 2];
+            }
+            return new_matrix;
         }
 
         static void PrintMatrix(string[,] matrix)
         {
             int total_rows = matrix.GetLength(0);
-            int half;
-            if (total_rows % 2 == 0) half = (total_rows + 1) / 2;
-            else half = total_rows / 2;
-            // Imprimo todo hasta la mitad, omitiendo el último índice.
-            for (int row = total_rows -2; row >= half; row--)
-            {
-                Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
-            }
-            // Imprimo el último índice.
-            Console.WriteLine($"{matrix[total_rows - 1, 1]}, {matrix[total_rows - 1, 0]} {matrix[total_rows - 1, 2]}");
-            // Imprimo desde la mitad hasta el índice 0.
-            for (int row = half - 1; row >= 0; row--)
-            {
-                Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
-            }
+            for (int row = 0; row != total_rows; row++)
+                Console.WriteLine(
+                    $"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}"
+                );
             Console.WriteLine();
         }
     }
@@ -556,27 +580,27 @@ namespace practical_6
 
 Salida:
 ```
-Ingrese el nombre: Leandro
-Ingrese el apellido: Pini
-Ingrese la edad: 43
 Ingrese el nombre: Alejo
 Ingrese el apellido: Sarmiento
 Ingrese la edad: 22
-Ingrese el nombre: Juan
+Ingrese el nombre: Pepe
 Ingrese el apellido: Perez
-Ingrese la edad: 55
+Ingrese la edad: 12
 Ingrese el nombre: Maria
-Ingrese el apellido: Suarez
+Ingrese el apellido: Marta
+Ingrese la edad: 55
+Ingrese el nombre: Leandro
+Ingrese el apellido: Pini
 Ingrese la edad: 43
-Ingrese el nombre: Nicolas
-Ingrese el apellido: Rolon
-Ingrese la edad: 26
-Suarez, Maria 43
+Ingrese el nombre: Charly
+Ingrese el apellido: Garcia
+Ingrese la edad: 71
 
-Perez, Juan 55
-Rolon, Nicolas 26
+Perez, Pepe 12
 Sarmiento, Alejo 22
 Pini, Leandro 43
+Marta, Maria 55
+Garcia, Charly 71
 
 Presione una tecla para continuar...
 ```
