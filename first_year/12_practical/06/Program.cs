@@ -33,27 +33,51 @@ namespace practical_6
                 matrix[row, 2] = Console.ReadLine();
             }
             Console.WriteLine();
+            matrix = OrderMatrixByAge(matrix);
             return matrix;
+        }
+
+        static string[,] OrderMatrixByAge(string[,] matrix)
+        {
+            int total_rows = matrix.GetLength(0);
+            int total_cols = matrix.GetLength(1);
+            string[,] new_matrix = new string[total_rows, total_cols];
+            List<int> order = new List<int>();
+            for (int row = 0; row != total_rows; row++)
+            {
+                // Si el valor del indice actual es mayor al valor del indice anterior
+                // hago sobre la lista order un .Add, sino un hago un .Insert cuando corresponda.
+                if (order.Count == 0 || int.Parse(matrix[row, 2]) > int.Parse(matrix[order[order.Count - 1], 2]))
+                    order.Add(row);
+                else
+                {
+                    for (int insert_index = 0; insert_index < order.Count(); insert_index++)
+                    {
+                        if (int.Parse(matrix[row, 2]) < int.Parse(matrix[order[insert_index], 2]))
+                        {
+                            order.Insert(insert_index, row);
+                            break;
+                        }
+                    }
+                }
+            }
+            // Creo la nueva matriz en base al la lista order que contiene los indices en orden de menor a mayor.
+            for (int row = 0; row != total_rows; row++)
+            {
+                new_matrix[row, 0] = matrix[order[row], 0];
+                new_matrix[row, 1] = matrix[order[row], 1];
+                new_matrix[row, 2] = matrix[order[row], 2];
+            }
+            return new_matrix;
         }
 
         static void PrintMatrix(string[,] matrix)
         {
             int total_rows = matrix.GetLength(0);
-            int half;
-            if (total_rows % 2 == 0) half = (total_rows + 1) / 2;
-            else half = total_rows / 2;
-            // Imprimo todo hasta la mitad, omitiendo el último índice.
-            for (int row = total_rows -2; row >= half; row--)
-            {
-                Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
-            }
-            // Imprimo el último índice.
-            Console.WriteLine($"{matrix[total_rows - 1, 1]}, {matrix[total_rows - 1, 0]} {matrix[total_rows - 1, 2]}");
-            // Imprimo desde la mitad hasta el índice 0.
-            for (int row = half - 1; row >= 0; row--)
-            {
-                Console.WriteLine($"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}");
-            }
+            for (int row = 0; row != total_rows; row++)
+                Console.WriteLine(
+                    $"{matrix[row, 1]}, {matrix[row, 0]} {matrix[row, 2]}"
+                );
             Console.WriteLine();
         }
     }

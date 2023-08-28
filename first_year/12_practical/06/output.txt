@@ -1,23 +1,23 @@
-Ingrese el nombre: Leandro
-Ingrese el apellido: Pini
-Ingrese la edad: 43
 Ingrese el nombre: Alejo
 Ingrese el apellido: Sarmiento
 Ingrese la edad: 22
-Ingrese el nombre: Juan
+Ingrese el nombre: Pepe
 Ingrese el apellido: Perez
-Ingrese la edad: 55
+Ingrese la edad: 12
 Ingrese el nombre: Maria
-Ingrese el apellido: Suarez
+Ingrese el apellido: Marta
+Ingrese la edad: 55
+Ingrese el nombre: Leandro
+Ingrese el apellido: Pini
 Ingrese la edad: 43
-Ingrese el nombre: Nicolas
-Ingrese el apellido: Rolon
-Ingrese la edad: 26
-Suarez, Maria 43
+Ingrese el nombre: Charly
+Ingrese el apellido: Garcia
+Ingrese la edad: 71
 
-Perez, Juan 55
-Rolon, Nicolas 26
+Perez, Pepe 12
 Sarmiento, Alejo 22
 Pini, Leandro 43
+Marta, Maria 55
+Garcia, Charly 71
 
 Presione una tecla para continuar...
