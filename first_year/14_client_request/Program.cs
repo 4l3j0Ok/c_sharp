@@ -11,12 +11,12 @@ namespace client_request
         {
             char separator = ';';
             string input = GetInput(separator);
-            List<int> odd_values = GetSortedOddValues(input, separator);
-            List<int> even_values = GetSortedEvenValues(input, separator);
-            CountAndPrint(odd_values, even_values);
-            SumAndPrint(odd_values, even_values);
-            Console.WriteLine("Presione una tecla para continuar...");
-            Console.ReadKey();
+            List<int> numbers = ParseNumbers(input, separator);
+            List<int> odd_values = numbers.Where(n => n % 2 == 0).ToList();
+            List<int> even_values = numbers.Where(n => n % 2 != 0).ToList();
+            PrintCount("pares", odd_values);
+            PrintCount("impares", even_values);
+            PrintSum(odd_values, even_values);
         }
 
         static string GetInput(char separator)
@@ -25,42 +25,24 @@ namespace client_request
             return Console.ReadLine().Trim();
         }
 
-        static List<int> GetSortedOddValues(string input, char separator)
+        static List<int> ParseNumbers(string input, char separator)
         {
-            List<int> odd = new List<int>();
+            List<int> list = new List<int>();
             foreach (string value in input.Split(separator))
-                if (int.Parse(value) % 2 == 0)
-                    odd.Add(int.Parse(value));
-            odd.Sort();
-            return odd;
+                list.Add(int.Parse(value));
+            list.Sort();
+            return list;
         }
 
-        static List<int> GetSortedEvenValues(string input, char separator)
+        static void PrintCount(string type, List<int> values)
         {
-            List<int> even = new List<int>();
-            foreach (string value in input.Split(separator))
-                if (int.Parse(value) % 2 != 0)
-                    even.Add(int.Parse(value));
-            even.Sort();
-            return even;
+            Console.WriteLine($"Total de números {type}: {values.Count()} ({string.Join(" ", values)})");
         }
 
-        static void CountAndPrint(List<int> odd, List<int> even)
+        static void PrintSum(List<int> odd, List<int> even)
         {
-            Console.WriteLine($"Total de números pares: {odd.Count()} ({string.Join(" ", odd)})");
-            Console.WriteLine($"Total de números impares: {even.Count()} ({string.Join(" ", even)})");
-        }
-
-        static void SumAndPrint(List<int> odd, List<int> even)
-        {
-            int odd_total = 0;
-            int even_total = 0;
-            foreach (int value in odd)
-                odd_total += value;
-            foreach (int value in even)
-                even_total += value;
-            Console.WriteLine($"Total de la suma entre los valores pares: {odd_total}");
-            Console.WriteLine($"Total de la suma entre los valores impares: {even_total}");
+            Console.WriteLine($"Total de la suma entre los valores pares: {odd.Sum()}");
+            Console.WriteLine($"Total de la suma entre los valores impares: {even.Sum()}");
         }
     }
 }
