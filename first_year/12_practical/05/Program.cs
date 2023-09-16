@@ -26,10 +26,11 @@ namespace practical_5
             path1: Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             path2: file_name
         );
-        static StreamWriter writer = new StreamWriter(file_path);
+        static StreamWriter writer = File.AppendText(file_path);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         static void Main(string[] args)
         {
+            writer.WriteLine($"\n{DateTime.Now.ToString()}\n");
             int array_length = 6;
             int rndm_start = 1;
             int rndm_limit = 10;
