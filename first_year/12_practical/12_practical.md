@@ -61,12 +61,12 @@ Salida:
 ```
 La matriz generada es la siguiente:
 
-	4 3 6 6 
-	6 4 3 1 
-	6 4 3 5 
-	6 2 5 3 
+	2 2 3 2 
+	3 6 1 1 
+	6 2 3 3 
+	4 2 2 5 
 
-El total de la suma entre todos los números de la matriz es: 67
+El total de la suma entre todos los números de la matriz es: 47
 
 Presione una tecla para continuar...
 
@@ -340,16 +340,16 @@ Salida:
 ```
 Matriz generada con valores aleatorios:
 
-	7 3 7 2 8 8 
-	4 6 6 4 3 7 
-	6 2 3 2 3 8 
-	6 6 3 8 4 8 
-	6 2 7 2 5 7 
-	5 6 4 3 4 3 
+	5 7 8 4 7 6 
+	3 5 7 4 8 6 
+	4 6 7 5 2 8 
+	7 8 8 3 4 6 
+	7 5 2 3 6 5 
+	2 5 2 7 4 8 
 
 Array generada con los valores de la diagonal:
 
-	7 6 3 8 5 3 
+	5 5 7 3 6 8 
 
 Presione una tecla para continuar...
 
@@ -388,10 +388,11 @@ namespace practical_5
             path1: Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             path2: file_name
         );
-        static StreamWriter writer = new StreamWriter(file_path);
+        static StreamWriter writer = File.AppendText(file_path);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         static void Main(string[] args)
         {
+            writer.WriteLine($"\n{DateTime.Now.ToString()}\n");
             int array_length = 6;
             int rndm_start = 1;
             int rndm_limit = 10;
@@ -470,19 +471,51 @@ namespace practical_5
 
 Salida:
 ```
+
+15/9/2023 21:45:14
+
 Array 1:
 
-	2 9 5 2 3 7 
+	5 4 2 5 9 3 
 
 Array 2:
 
-	9 1 4 7 2 4 
+	5 5 1 7 1 9 
 
 Resultante:
 
-	4032 18144 10080 4032 6048 14112 
+	7875 6300 3150 7875 14175 4725 
 
-Presione una tecla para continuar...
+
+15/9/2023 21:45:18
+
+Array 1:
+
+	8 1 5 7 8 8 
+
+Array 2:
+
+	3 7 2 1 1 9 
+
+Resultante:
+
+	3024 378 1890 2646 3024 3024 
+
+
+15/9/2023 21:45:22
+
+Array 1:
+
+	4 1 9 8 8 6 
+
+Array 2:
+
+	4 8 2 8 8 1 
+
+Resultante:
+
+	16384 4096 36864 32768 32768 24576 
+
 
 ```
 
@@ -632,10 +665,11 @@ namespace practical_7
             path1: Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             path2: file_name
         );
-        static StreamWriter writer = new StreamWriter(file_path);
+        static StreamWriter writer = File.AppendText(file_path);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         static void Main(string[] args)
         {
+            writer.WriteLine($"\n{DateTime.Now.ToString()}\n");
             int rolls = 5;
             int dices = 5;
             int faces = 6;
@@ -702,30 +736,106 @@ namespace practical_7
 
 Salida:
 ```
+
+15/9/2023 21:43:24
+
 Presione una tecla para la jugada numero 1
 Presione una tecla para la jugada numero 2
 Presione una tecla para la jugada numero 3
 Presione una tecla para la jugada numero 4
 Presione una tecla para la jugada numero 5
 
-Tiro 1: 2 4 2 6 2 
+Tiro 1: 1 6 2 2 4 
 
-Tiro 2: 2 3 5 2 4 
+Tiro 2: 4 3 4 2 1 
 
-Tiro 3: 1 4 5 5 2 
+Tiro 3: 3 6 6 3 6 
 
-Tiro 4: 2 2 4 5 1 
+Tiro 4: 2 1 3 6 1 
 
-Tiro 5: 6 2 3 4 4 
+Tiro 5: 4 5 6 5 3 
 
-1 = 2 veces
-2 = 9 veces
-3 = 2 veces
+1 = 4 veces
+2 = 4 veces
+3 = 5 veces
+4 = 4 veces
+5 = 2 veces
+6 = 6 veces
+
+15/9/2023 21:43:29
+
+Presione una tecla para la jugada numero 1
+Presione una tecla para la jugada numero 2
+Presione una tecla para la jugada numero 3
+Presione una tecla para la jugada numero 4
+Presione una tecla para la jugada numero 5
+
+Tiro 1: 4 2 5 2 3 
+
+Tiro 2: 5 5 1 4 2 
+
+Tiro 3: 1 4 2 4 2 
+
+Tiro 4: 1 4 5 1 3 
+
+Tiro 5: 2 4 6 3 3 
+
+1 = 4 veces
+2 = 6 veces
+3 = 4 veces
 4 = 6 veces
 5 = 4 veces
+6 = 1 veces
+
+15/9/2023 21:43:34
+
+Presione una tecla para la jugada numero 1
+Presione una tecla para la jugada numero 2
+Presione una tecla para la jugada numero 3
+Presione una tecla para la jugada numero 4
+Presione una tecla para la jugada numero 5
+
+Tiro 1: 4 6 3 3 3 
+
+Tiro 2: 3 1 5 2 3 
+
+Tiro 3: 3 3 5 2 2 
+
+Tiro 4: 2 5 4 3 3 
+
+Tiro 5: 6 1 1 4 3 
+
+1 = 3 veces
+2 = 4 veces
+3 = 10 veces
+4 = 3 veces
+5 = 3 veces
 6 = 2 veces
 
-Presione una tecla para continuar...
+15/9/2023 21:43:38
+
+Presione una tecla para la jugada numero 1
+Presione una tecla para la jugada numero 2
+Presione una tecla para la jugada numero 3
+Presione una tecla para la jugada numero 4
+Presione una tecla para la jugada numero 5
+
+Tiro 1: 4 1 3 3 5 
+
+Tiro 2: 6 4 3 3 6 
+
+Tiro 3: 5 2 4 4 3 
+
+Tiro 4: 1 4 3 5 6 
+
+Tiro 5: 3 6 1 4 4 
+
+1 = 3 veces
+2 = 1 veces
+3 = 7 veces
+4 = 7 veces
+5 = 3 veces
+6 = 4 veces
 
 ```
 
