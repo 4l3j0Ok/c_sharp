@@ -61,12 +61,12 @@ Salida:
 ```
 La matriz generada es la siguiente:
 
-	2 2 3 2 
-	3 6 1 1 
-	6 2 3 3 
-	4 2 2 5 
+	3 4 5 5 
+	2 4 1 4 
+	4 6 6 5 
+	6 2 3 2 
 
-El total de la suma entre todos los números de la matriz es: 47
+El total de la suma entre todos los números de la matriz es: 62
 
 Presione una tecla para continuar...
 
@@ -340,16 +340,16 @@ Salida:
 ```
 Matriz generada con valores aleatorios:
 
-	5 7 8 4 7 6 
-	3 5 7 4 8 6 
-	4 6 7 5 2 8 
-	7 8 8 3 4 6 
-	7 5 2 3 6 5 
-	2 5 2 7 4 8 
+	6 5 8 2 7 5 
+	5 7 7 8 5 8 
+	8 8 7 8 4 8 
+	4 3 6 5 8 6 
+	6 7 7 6 2 7 
+	8 3 2 6 4 5 
 
 Array generada con los valores de la diagonal:
 
-	5 5 7 3 6 8 
+	6 7 7 5 2 5 
 
 Presione una tecla para continuar...
 
