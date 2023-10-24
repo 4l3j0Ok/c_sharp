@@ -1,2 +1,2 @@
-# Instituto
-Ejercicios que vamos desarrollando en C# en el instituto.
+# C \# (Instituto)
+Este es un repositorio para plasmar los diferentes ejercicios que tengo que desarrollar para el instituto en donde me encuentro estudiando actualmente.
